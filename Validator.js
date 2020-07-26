@@ -1,3 +1,5 @@
+
+var counter = 0;
 function showForm() {
     var x = document.getElementById("f1");
     if (x.style.display === "none") {
@@ -10,11 +12,21 @@ function showForm() {
 function view() {
 
     var y = document.getElementById("r1");
-    if (y.style.display === "none") {
-        y.style.display = "block";
-    } else {
+    if (counter == 0) {
+        document.getElementById("s8").innerHTML = "------------------************No data Found************------------------ ";
+
         y.style.display = "none";
     }
+    else if (counter != 0) {
+        if (y.style.display === "none") {
+            document.getElementById("s8").innerHTML = " "
+            y.style.display = "block";
+        } else {
+            y.style.display = "none";
+        }
+    }
+
+
 }
 
 function addRow(formID, tableID) {
@@ -32,6 +44,7 @@ function addRow(formID, tableID) {
     var mobregex = /^[1-9]\d{9}$/;
     // Regular expression for basic email validation
     var Eregex = /^\S+@\S+\.\S+$/;
+
 
     if (fname == "") {
         document.getElementById("s1").innerHTML = "Please enter your fullname";
@@ -73,8 +86,11 @@ function addRow(formID, tableID) {
 
 
     else {
-        document.getElementById("s7").innerHTML = "Your data inserted sucessfully!!";
 
+        counter++;
+
+        document.getElementById("s8").innerHTML = " ";
+        document.getElementById("s7").innerHTML = "Your data inserted sucessfully!!";
         var row = table.insertRow(rowCount);
         var cell1 = row.insertCell(0);
         var element1 = document.createElement("input");
